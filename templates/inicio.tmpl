@@ -1,0 +1,28 @@
+{{define "inicio"}}
+{{template "cabezera"}}
+<a class="btn btn-primary" href="/crear" role="button">crear Empleado</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody> range
+                {{ range .}}
+                    <tr>
+                        <td scope="row"> {{.Id}} </td>
+                        <td> {{.Nombre}} </td>
+                        <td> {{.Correo}} </td>
+                        <td>
+                            <a  class="btn btn-warning" href="/editar?id={{.Id}}" role="button">edit</a>
+                            <a  class="btn btn-danger" href="/eliminar?id={{.Id}}" role="button">delete</a>
+                        </td>
+                    </tr>
+                {{end}}
+                </tbody>
+            </table>
+{{template "pie"}}
+{{end}}
