@@ -146,7 +146,7 @@ func main() {
 		port = "3000" // Puerto predeterminado si no se especifica
 	}
 	fmt.Println("Servidor en ejecución: http://localhost:" + port)
-	http.ListenAndServe(":"+port, nil)
+	http.ListenAndServe("crud-go-7htt.onrender.com"+port, nil)
 
 	http.HandleFunc("/", index)
 	http.HandleFunc("/crear", crear)
