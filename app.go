@@ -141,12 +141,6 @@ func actualizar(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "3000" // Puerto predeterminado si no se especifica
-	}
-	fmt.Println("Servidor en ejecución: http://localhost:" + port)
-	http.ListenAndServe("crud-go-7htt.onrender.com"+port, nil)
 
 	http.HandleFunc("/", index)
 	http.HandleFunc("/crear", crear)
@@ -154,6 +148,12 @@ func main() {
 	http.HandleFunc("/eliminar", eliminar)
 	http.HandleFunc("/editar", editar)
 	http.HandleFunc("/actualizar", actualizar)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000" // Puerto predeterminado si no se especifica
+	}
+	fmt.Println("Servidor en ejecución: http://localhost:" + port)
+	http.ListenAndServe(":"+port, nil)
 	fmt.Println("Run Server: http://localhost:3000")
 	//http.ListenAndServe("localhost:3000", nil)
 
