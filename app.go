@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"net/http"
+	"os"
 	"text/template"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -140,6 +141,13 @@ func actualizar(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000" // Puerto predeterminado si no se especifica
+	}
+	fmt.Println("Servidor en ejecución: http://localhost:" + port)
+	http.ListenAndServe(":"+port, nil)
+
 	http.HandleFunc("/", index)
 	http.HandleFunc("/crear", crear)
 	http.HandleFunc("/insertar", insertar)
@@ -147,6 +155,6 @@ func main() {
 	http.HandleFunc("/editar", editar)
 	http.HandleFunc("/actualizar", actualizar)
 	fmt.Println("Run Server: http://localhost:3000")
-	http.ListenAndServe("localhost:3000", nil)
+	//http.ListenAndServe("localhost:3000", nil)
 
 }
